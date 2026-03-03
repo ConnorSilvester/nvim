@@ -10,7 +10,7 @@ vim.opt.foldenable = false
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.signcolumn = 'yes'
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 vim.opt.number = true
 vim.opt.wrap = false
 vim.opt.breakindent = true

@@ -3,17 +3,15 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
-        event = 'VimEnter',
+        event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             { 'nvim-treesitter/nvim-treesitter-textobjects' },
             { 'mfussenegger/nvim-treehopper' },
-            { 'nvim-treesitter/nvim-treesitter-context',
-                opts = {},
-            },
+            { 'nvim-treesitter/nvim-treesitter-context', opts = {} },
         },
 
         config = function()
-            require('nvim-treesitter.configs').setup {
+            require('nvim-treesitter.config').setup {
                 ensure_installed = {
                     'bash',
                     'bibtex',

@@ -13,6 +13,7 @@ return {
         'hrsh7th/cmp-path',
         'octaltree/cmp-look',
         'uga-rosa/cmp-dictionary',
+        'nvim-treesitter/nvim-treesitter',
     },
     config = function()
         require('luasnip/loaders/from_lua').load { paths = { '~/.config/nvim/snippets/' } }
@@ -206,7 +207,7 @@ return {
         })
 
         local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-        local ts_utils = require 'nvim-treesitter.ts_utils'
+        local ts_utils = require 'nvim-treesitter'
 
         local ts_node_func_parens_disabled = {
             named_imports = true,
@@ -215,7 +216,12 @@ return {
 
         local default_handler = cmp_autopairs.filetypes['*']['('].handler
         cmp_autopairs.filetypes['*']['('].handler = function(char, item, bufnr, rules, commit_character)
-            local node_type = ts_utils.get_node_at_cursor():type()
+            local node_type = ''
+            pcall(function()
+                local node = ts_utils.get_node_at_cursor()
+                node_type = node and node:type() or ''
+            end)
+
             if ts_node_func_parens_disabled[node_type] then
                 if item.data then
                     item.data.funcParensDisabled = true

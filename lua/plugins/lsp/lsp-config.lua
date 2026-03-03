@@ -33,24 +33,22 @@ return {
                 -- C/C++
                 'clangd',
 
+                -- CMake
+                'neocmake',
+
                 -- Java
                 'jdtls',
 
                 -- Python
                 'ruff',
+                'pyright',
 
                 -- Lua
                 'lua_ls',
+                'stylua',
 
                 -- Rust
                 'rust_analyzer',
-
-                -- Kotlin
-                'kotlin_language_server',
-
-                -- Ruby
-                'solargraph',
-                'ruby_lsp',
 
                 -- HTML
                 'html',
@@ -63,18 +61,9 @@ return {
 
                 -- Markdown
                 'marksman',
-
-                -- CMake
-                'cmake',
-
-                -- YAML
-                'yamlls',
-
-                -- LaTeX
-                'texlab',
             },
             automatic_installation = true,
-            automatic_setup = false,
+            automatic_setup = true,
             automatic_enable = {
                 exclude = {
                     'clangd',
@@ -82,14 +71,10 @@ return {
             },
         }
 
-        vim.g.lspconfig_legacy_interface = true
-        local lspconfig = require 'lspconfig'
+        -- vim.g.lspconfig_legacy_interface = true
+        -- local lspconfig = vim.lsp.config()
 
-        local lsp_defaults = lspconfig.util.default_config
-        -- lsp_defaults.capabilities =
-        --     vim.tbl_deep_extend('force', lsp_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
-        -- lsp_defaults.capabilities = vim.tbl_deep_extend('force', lsp_defaults.capabilities, require('blink.cmp').get_lsp_capabilities())
-
+        local default_capabilities = require('cmp_nvim_lsp').default_capabilities()
         local navic = require 'nvim-navic'
 
         local opts = function(desc)
@@ -181,8 +166,8 @@ return {
         }
 
         -- Custom server configs
-        lspconfig.clangd.setup {
-            capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        vim.lsp.config['clangd'] = {
+            capabilities = default_capabilities,
             cmd = {
                 'clangd',
                 '--background-index',
@@ -191,6 +176,10 @@ return {
                 '--completion-style=detailed',
                 '--function-arg-placeholders',
                 '--fallback-style=Google',
+                '--all-scopes-completion',
+                '--cross-file-rename',
+                '--pch-storage=memory',
+                '--compile-commands-dir=.',
             },
             init_options = {
                 clangdFileStatus = true,
@@ -198,5 +187,6 @@ return {
                 completeUnimported = true,
             },
         }
+        vim.lsp.enable 'clangd'
     end,
 }

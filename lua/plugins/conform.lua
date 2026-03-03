@@ -3,24 +3,24 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
         formatters_by_ft = {
-            css = { 'prettier' },
+
+            -- Web Formatters
             html = { 'prettier' },
+            css = { 'prettier' },
             javascript = { 'prettier' },
-            json = { 'prettier' },
-            lua = { 'stylua' },
             markdown = { 'prettier' },
-            python = { 'black' },
-            rust = { 'rustfmt' },
+            json = { 'prettier' },
             scss = { 'prettier' },
             jsx = { 'prettier' },
-            yaml = { 'yamlfmt' },
-            java = { 'google_java_format' },
+
             c = { 'clang_format' },
             cpp = { 'clang_format' },
-            ruby = { 'standardrb' },
-            eruby = { 'erb_format' },
+            python = { 'black' },
+            lua = { 'stylua' },
+            rust = { 'rustfmt' },
+            java = { 'google_java_format' },
             cmake = { 'cmake_format' },
-            kotlin = { 'ktlint' },
+            make = { 'mbake' },
         },
         format_on_save = function(_)
             return false
@@ -31,13 +31,11 @@ return {
                 args = { '-' },
                 stdin = true,
             },
-            kotlin = {
-                function(bufnr)
-                    local filename = vim.api.nvim_buf_get_name(bufnr)
-                    if not filename:match '^.conform%.' then
-                        vim.cmd('!ktlint --format --relative ' .. vim.fn.shellescape(filename))
-                    end
-                end,
+
+            mbake = {
+                command = 'mbake',
+                args = { '-' },
+                stdin = true,
             },
         },
     },
