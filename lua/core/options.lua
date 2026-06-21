@@ -12,7 +12,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.signcolumn = 'yes'
 vim.opt.relativenumber = false
 vim.opt.number = true
-vim.opt.wrap = false
+-- vim.opt.wrap = false
 vim.opt.breakindent = true
 vim.opt.cursorline = true
 vim.opt.conceallevel = 0
@@ -41,5 +41,6 @@ vim.opt.spellfile = vim.fn.stdpath 'config' .. '/spell/en.utf-8.add'
 -- General
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.opt.ruler = false
 vim.opt.guicursor = 'n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50'
 vim.opt.clipboard = 'unnamedplus'

@@ -25,6 +25,9 @@ vim.keymap.set('n', '<leader>wn', '<cmd>tabn<CR>', { desc = 'Go to next tab' })
 vim.keymap.set('n', '<leader>wp', '<cmd>tabp<CR>', { desc = 'Go to prev tab' })
 vim.keymap.set('n', '<leader>ww', 'g<C-g>', { desc = 'File Info Word Count' })
 
+vim.keymap.set('n', '<leader>w=', '<cmd>vertical resize +10<CR>', { desc = 'Widen window' })
+vim.keymap.set('n', '<leader>w-', '<cmd>vertical resize -10<CR>', { desc = 'Shrink window' })
+
 -- Restart Java LSP
 vim.keymap.set('n', '<leader>wj', ':LspRestart jdtls<CR>', { noremap = true, silent = true })
 
@@ -52,7 +55,6 @@ vim.keymap.set('n', '<leader>gN', '[sz=', { noremap = true, silent = true, desc 
 vim.keymap.set('n', '<leader>gt', ':set spell!<CR>', { noremap = true, silent = true, desc = 'Toggle spell checking' })
 
 -- Obsidian Keybindings
-vim.keymap.set('n', '<leader>oo', ':cd /home/connor/MainFiles/Obsidian/Main<CR>', { noremap = true, silent = true, desc = 'Obsidian: CD to vault' })
 vim.keymap.set('n', '<leader>on', ':lua create_note()<CR>', { noremap = true, silent = true, desc = 'Obsidian: New Note' })
 vim.keymap.set('n', '<leader>ol', ':ObsidianBacklinks<CR>', { noremap = true, silent = true, desc = 'Obsidian: Backlinks' })
 vim.keymap.set('n', '<leader>ot', ':ObsidianTemplate new_note_template.md<CR>', { noremap = true, silent = true, desc = 'Obsidian: Add not template' })

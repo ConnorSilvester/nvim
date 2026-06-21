@@ -16,10 +16,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Treesitter fix to force connection
-vim.treesitter.language.register('c', 'h')
-vim.treesitter.language.register('cpp', { 'hpp', 'hxx', 'hh', 'h++' })
-
-local force_treesitter_langs = { 'python', 'c', 'cpp', 'h', 'hpp', 'cmake', 'make' }
+local force_treesitter_langs = { 'python', 'c', 'cpp', 'h', 'hpp', 'cmake', 'make', 'java' }
 vim.api.nvim_create_autocmd('FileType', {
     pattern = force_treesitter_langs,
     callback = function(ev)
